@@ -509,6 +509,7 @@ var _lenisDefault = parcelHelpers.interopDefault(_lenis);
 var _gsap = require("gsap");
 var _preloader = require("./preloader");
 var _scrollTrigger = require("gsap/ScrollTrigger");
+var _utils = require("./utils");
 (0, _gsap.gsap).registerPlugin((0, _scrollTrigger.ScrollTrigger));
 // preload the images
 (0, _preloader.preloader)();
@@ -546,8 +547,159 @@ paths.forEach((el)=>{
         }
     });
 });
+// preload images then remove loader (loading class)
+(0, _utils.preloadImages)(".tiles__line-img").then(()=>document.body.classList.remove("loading"));
+// frame element
+const frame = document.querySelector(".frame");
+// overlay (SVG path element)
+const overlayPath = document.querySelector(".overlay__path");
+// menu (wrap) element
+const menuWrap = document.querySelector(".menu-wrap");
+// menu items
+const menuItems = menuWrap.querySelectorAll(".menu__item");
+// open menu button
+const openMenuCtrl = document.querySelector("button.button-menu");
+// close menu button
+const closeMenuCtrl = menuWrap.querySelector(".button-close");
+// big title elements
+const title = {
+    main: document.querySelector(".content__title-main"),
+    sub: document.querySelector(".content__title-sub")
+};
+let isAnimating = false;
+// opens the menu
+const openMenu = ()=>{
+    if (isAnimating) return;
+    isAnimating = true;
+    (0, _gsap.gsap).timeline({
+        onComplete: ()=>isAnimating = false
+    }).set(overlayPath, {
+        attr: {
+            d: "M 0 100 V 100 Q 50 100 100 100 V 100 z"
+        }
+    }).to(overlayPath, {
+        duration: 0.8,
+        ease: "power4.in",
+        attr: {
+            d: "M 0 100 V 50 Q 50 0 100 50 V 100 z"
+        }
+    }, 0).to(overlayPath, {
+        duration: 0.3,
+        ease: "power2",
+        attr: {
+            d: "M 0 100 V 0 Q 50 0 100 0 V 100 z"
+        },
+        onComplete: ()=>{
+            frame.classList.add("frame--menu-open");
+            menuWrap.classList.add("menu-wrap--open");
+        }
+    })// title elements
+    .to([
+        title.main,
+        title.sub
+    ], {
+        duration: 0.8,
+        ease: "power3.in",
+        y: -200,
+        stagger: 0.05
+    }, 0.2)// now reveal
+    .set(menuItems, {
+        opacity: 0
+    }).set(overlayPath, {
+        attr: {
+            d: "M 0 0 V 100 Q 50 100 100 100 V 0 z"
+        }
+    }).to(overlayPath, {
+        duration: 0.3,
+        ease: "power2.in",
+        attr: {
+            d: "M 0 0 V 50 Q 50 0 100 50 V 0 z"
+        }
+    }).to(overlayPath, {
+        duration: 0.8,
+        ease: "power4",
+        attr: {
+            d: "M 0 0 V 0 Q 50 0 100 0 V 0 z"
+        }
+    })// menu items translate animation
+    .to(menuItems, {
+        duration: 1.1,
+        ease: "power4",
+        startAt: {
+            y: 150
+        },
+        y: 0,
+        opacity: 1,
+        stagger: 0.05
+    }, ">-=1.1");
+};
+// closes the menu
+const closeMenu = ()=>{
+    if (isAnimating) return;
+    isAnimating = true;
+    (0, _gsap.gsap).timeline({
+        onComplete: ()=>isAnimating = false
+    }).set(overlayPath, {
+        attr: {
+            d: "M 0 0 V 0 Q 50 0 100 0 V 0 z"
+        }
+    }).to(overlayPath, {
+        duration: 0.8,
+        ease: "power4.in",
+        attr: {
+            d: "M 0 0 V 50 Q 50 100 100 50 V 0 z"
+        }
+    }, 0).to(overlayPath, {
+        duration: 0.3,
+        ease: "power2",
+        attr: {
+            d: "M 0 0 V 100 Q 50 100 100 100 V 0 z"
+        },
+        onComplete: ()=>{
+            frame.classList.remove("frame--menu-open");
+            menuWrap.classList.remove("menu-wrap--open");
+        }
+    })// now reveal
+    .set(overlayPath, {
+        attr: {
+            d: "M 0 100 V 0 Q 50 0 100 0 V 100 z"
+        }
+    }).to(overlayPath, {
+        duration: 0.3,
+        ease: "power2.in",
+        attr: {
+            d: "M 0 100 V 50 Q 50 100 100 50 V 100 z"
+        }
+    }).to(overlayPath, {
+        duration: 0.8,
+        ease: "power4",
+        attr: {
+            d: "M 0 100 V 100 Q 50 100 100 100 V 100 z"
+        }
+    })// title elements
+    .to([
+        title.main,
+        title.sub
+    ], {
+        duration: 1.1,
+        ease: "power4",
+        y: 0,
+        stagger: -0.05
+    }, ">-=1.1")// menu items translate animation
+    .to(menuItems, {
+        duration: 0.8,
+        ease: "power2.in",
+        y: 100,
+        opacity: 0,
+        stagger: -0.05
+    }, 0);
+};
+// click on menu button
+openMenuCtrl.addEventListener("click", openMenu);
+// click on close menu button
+closeMenuCtrl.addEventListener("click", closeMenu);
 
-},{"@studio-freight/lenis":"jOD5W","gsap":"fPSuC","./preloader":"gkVpk","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jOD5W":[function(require,module,exports) {
+},{"@studio-freight/lenis":"jOD5W","gsap":"fPSuC","./preloader":"gkVpk","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./utils":"72Dku"}],"jOD5W":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>r);
@@ -6874,6 +7026,20 @@ Observer.getById = function(id) {
 };
 _getGSAP() && gsap.registerPlugin(Observer);
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["aRq6p","ebWYT"], "ebWYT", "parcelRequiref8fe")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"72Dku":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "preloadImages", ()=>preloadImages);
+const imagesLoaded = require("imagesloaded");
+// Preload images
+const preloadImages = (selector = "img")=>{
+    return new Promise((resolve)=>{
+        imagesLoaded(document.querySelectorAll(selector), {
+            background: true
+        }, resolve);
+    });
+};
+
+},{"imagesloaded":"aYzyZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["aRq6p","ebWYT"], "ebWYT", "parcelRequiref8fe")
 
 //# sourceMappingURL=index.739bf03c.js.map

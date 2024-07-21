@@ -10,11 +10,11 @@
     "build": "npm run clean && npm run build:parcel"
   },
   "devDependencies": {
-    "parcel": "^2.6.0"
+    "parcel": "latest"
   },
   "dependencies": {
     "@studio-freight/lenis": "^0.1.2",
-    "gsap": "^3.10.4",
+    "gsap": "latest",
     "imagesloaded": "^5.0.0"
   }
 }
