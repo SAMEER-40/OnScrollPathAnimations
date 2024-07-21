@@ -7,7 +7,9 @@
 :root {
 	font-size: 15px;
 }
-
+html,body {
+	overflow: hidden;
+}
 body {
 	margin: 0;
 	--color-text-alt: #3e4843;
@@ -36,8 +38,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	width: 100%;
-	overflow-x: hidden;
-	overflow-y: hidden;
 }
 
 a {
