@@ -813,7 +813,38 @@ Promise.all([
     document.body.classList.remove("loading");
 });
 
-},{"./row":"d87VK","gsap":"fPSuC","gsap/Flip":"iKp6p","./utils2":"hAk3W"}],"d87VK":[function(require,module,exports) {
+},{"./utils2":"hAk3W","./row":"d87VK","gsap":"fPSuC","gsap/Flip":"iKp6p"}],"hAk3W":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "preloadImages", ()=>preloadImages);
+parcelHelpers.export(exports, "preloadFonts", ()=>preloadFonts);
+var _imagesloaded = require("imagesloaded");
+var _imagesloadedDefault = parcelHelpers.interopDefault(_imagesloaded);
+/**
+ * Preload images
+ * @param {String} selector - Selector/scope from where images need to be preloaded. Default is 'img'
+ */ const preloadImages = (selector = "img")=>{
+    return new Promise((resolve)=>{
+        (0, _imagesloadedDefault.default)(document.querySelectorAll(selector), {
+            background: true
+        }, resolve);
+    });
+};
+/**
+ * Preload fonts
+ * @param {String} id
+ */ const preloadFonts = (id)=>{
+    return new Promise((resolve)=>{
+        WebFont.load({
+            typekit: {
+                id: id
+            },
+            active: resolve
+        });
+    });
+};
+
+},{"imagesloaded":"aYzyZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d87VK":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -2178,37 +2209,6 @@ function getGlobalMatrix(element, inverse, adjustGOffset, includeScrollInFixed) 
     return inverse ? m.inverse() : m;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hAk3W":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "preloadImages", ()=>preloadImages);
-parcelHelpers.export(exports, "preloadFonts", ()=>preloadFonts);
-var _imagesloaded = require("imagesloaded");
-var _imagesloadedDefault = parcelHelpers.interopDefault(_imagesloaded);
-/**
- * Preload images
- * @param {String} selector - Selector/scope from where images need to be preloaded. Default is 'img'
- */ const preloadImages = (selector = "img")=>{
-    return new Promise((resolve)=>{
-        (0, _imagesloadedDefault.default)(document.querySelectorAll(selector), {
-            background: true
-        }, resolve);
-    });
-};
-/**
- * Preload fonts
- * @param {String} id
- */ const preloadFonts = (id)=>{
-    return new Promise((resolve)=>{
-        WebFont.load({
-            typekit: {
-                id: id
-            },
-            active: resolve
-        });
-    });
-};
-
-},{"imagesloaded":"aYzyZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["5Ztq2","gTMSd"], "gTMSd", "parcelRequire50c9")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["5Ztq2","gTMSd"], "gTMSd", "parcelRequire50c9")
 
 //# sourceMappingURL=index.70862351.js.map
