@@ -965,7 +965,17 @@ a:focus-visible {
   place-items: center;
   border-radius: 50%;
 }
-
+.logogogo {
+  display: grid;
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--color-link-hover);
+  place-items: center;
+  border-radius: 50%;
+}
 .frame__sub:hover::before,
 .frame__sub:focus::before  {
   content: '';
@@ -1008,16 +1018,16 @@ a:focus-visible {
 }
 #cc {
 	position:relative;
-	margin: 0;
-	  color: var(--color-text);
-	  background-color: var(--color-bg);
-	  font-family: "Kode Mono", monospace;
-	  -webkit-font-smoothing: antialiased;
-	  -moz-osx-font-smoothing: grayscale;
-	  background-image: url(../img/noise.png), radial-gradient(circle, rgb(52 33 56) 0%, rgb(0 0 0) 100%);
-	  background-size: 400px, 100% 100vh;
-	  background-attachment: fixed;
-	  overflow-x: hidden;
+	  margin: 0;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-family: "Kode Mono", monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url(../img/cj.png);
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x: hidden;
 }
 .intro44 {
   width: 100%;

@@ -14,5 +14,10 @@
     <orderEntry type="library" name="gsap" level="application" />
     <orderEntry type="library" name="ScrollTrigger" level="application" />
     <orderEntry type="library" name="smooth-scroll" level="application" />
+    <orderEntry type="library" name="@studio-freight/lenis" level="application" />
+    <orderEntry type="library" name="gsap" level="application" />
+    <orderEntry type="library" name="ScrollTrigger" level="application" />
+    <orderEntry type="library" name="jquery.imagesloaded" level="application" />
+    <orderEntry type="library" name="smooth-scroll" level="application" />
   </component>
 </module>
