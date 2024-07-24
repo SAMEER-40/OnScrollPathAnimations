@@ -9,7 +9,7 @@ preloader();
 
 // All path elements in the page
 const paths = [...document.querySelectorAll('path.path-anim')];
-	
+
 // Smooth scrolling initialization (using Lenis https://github.com/studio-freight/lenis)
 const lenis = new Lenis({
     lerp: 0.1,
@@ -22,8 +22,8 @@ const scrollFn = () => {
 requestAnimationFrame(scrollFn);
 
 // Animate the d attribute (path initial ) to the value in data-path-to;
-// start when the top of its SVG reaches the bottom of the viewport and 
-// end when the bottom of its SVG reaches the top of the viewport 
+// start when the top of its SVG reaches the bottom of the viewport and
+// end when the bottom of its SVG reaches the top of the viewport
 paths.forEach(el => {
     const svgEl = el.closest('svg');
     const pathTo = el.dataset.pathTo;
@@ -198,3 +198,4 @@ const closeMenu = ()  => {
 openMenuCtrl.addEventListener('click', openMenu);
 // click on close menu button
 closeMenuCtrl.addEventListener('click', closeMenu);
+
